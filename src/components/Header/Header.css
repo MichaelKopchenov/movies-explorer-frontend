@@ -1,0 +1,340 @@
+.header__main {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--secondary-color);
+  padding: 0 70px;
+}
+
+.header__main_type_transparent {
+  background-color: transparent;
+}
+
+.header__navigation-home {
+  display: block;
+  margin: 18px 0;
+  width: 38px;
+  height: 38px;
+  background-image: url('../../images/logo.svg');
+  transition: opacity .3s linear;
+}
+
+.header__navigation-list {
+  padding: 21px 0 0 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.header__signup {
+  margin-right: 30px;
+  text-decoration: none;
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--main-font-color);
+  transition: opacity .3s linear;
+}
+
+.header__signin {
+  text-align: center;
+  padding-top: 8px;
+  background-color: #3DDC84;
+  display: block;
+  border-radius: 3px;
+  width: 76px;
+  min-height: 32px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  transition: opacity .3s linear;
+}
+
+.header__nav {
+  width: 100%;
+  transition: width .2s linear, visibility .2s linear;
+}
+
+.header__nav_open {
+  width: 100%;
+  visibility: visible;
+}
+
+.header__navigation-list_type_ul {
+  padding-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header__nav-list_type_ul:last-of-type {
+  margin-right: 3px;
+}
+
+.header__nav-list_type_ul:nth-of-type(3) {
+  margin-right: calc(377/1102*100%);
+}
+
+.header__nav-list_type_ul:nth-of-type(2) {
+  margin-right: 13px;
+}
+
+.header__nav-list_type_ul:first-of-type {
+  display: none;
+}
+
+.header__link {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--main-font-color);
+  transition: opacity .3s linear;
+}
+
+.header__link_type_account {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+}
+
+.header__link_active {
+  font-weight: 500;
+}
+
+.header__account-icon {
+  width: 26px;
+  height: 26px;
+  margin-left: 7px;
+  border-radius: 50%;
+  background-color: #313131;
+  background-image: url(../../images/account.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header__menu {
+  display: none;
+  margin-top: 15px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  background-image: url('../../images/menu.svg');
+  background-position: center;
+  transition: opacity .3s linear;
+}
+
+.header__menu-close {
+  display: none;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  background-image: url(../../images/close-icon.svg);
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 23px;
+  right: 23px;
+  transition: opacity .3s linear;
+}
+
+/* Адаптив под экраны */
+
+@media screen and (max-width:1023px) {
+  .header__main {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .header__main {
+    padding-left: 14px;
+    padding-right: 12px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .header__navigation-list {
+    padding-top: 24px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .header__signup {
+    margin-right: 14px;
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .header__signin {
+    padding-top: 4px;
+    width: 54px;
+    min-height: 26px;
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__nav {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__navigation-list_type_ul {
+    box-sizing: border-box;
+    width: 520px;
+    height: 100vh;
+    padding-top: 159px;
+    padding-bottom: 90px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 auto;
+    background-color: #202020;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .header__navigation-list_type_ul {
+    width: 100%;
+    padding-top: 144px;
+    padding-bottom: 46px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__nav-list_type_ul:last-of-type {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__nav-list_type_ul:nth-of-type(3) {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__nav-list_type_ul:nth-of-type(2) {
+    margin: 0;
+    margin-bottom: 28px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .header__nav-list_type_ul:nth-of-type(2) {
+    margin-bottom: 23px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__nav-list_type_ul:first-of-type {
+    display: block;
+    margin-bottom: 31px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .header__nav-list_type_ul:first-of-type {
+    margin-bottom: 27px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__link {
+    padding-bottom: 4px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__link_type_account {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 12px;
+    margin-left: 8px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__link_active {
+    border-bottom: 1px solid var(--main-font-color);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__menu {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .header__menu {
+    background-image: url('../../images/menu-easy.svg');
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__menu-close {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .header__menu-close {
+    top: 14px;
+    right: 14px;
+  }
+}
+
+@media (hover: hover) {
+  .header__signin:hover {
+    opacity: .7;
+    cursor: pointer;
+  }
+
+  .header__signup:hover {
+    opacity: .7;
+    cursor: pointer;
+  }
+
+  .header__link-home:hover {
+    opacity: .7;
+    cursor: pointer;
+  }
+
+  .header__link:hover {
+    opacity: .7;
+    cursor: pointer;
+  }
+
+  .header__menu-close:hover {
+    opacity: .7;
+    cursor: pointer;
+  }
+
+  .header__menu:hover {
+    opacity: .7;
+    cursor: pointer;
+  }
+}
