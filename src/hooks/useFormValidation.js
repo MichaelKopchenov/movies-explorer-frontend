@@ -7,8 +7,8 @@ export default function useFormValidation() {
   const [isValid, setIsValid] = useState(false)
 
   const setValue = useCallback((name, value) => {
-    setValues((oldValues) => {
-      return { ...oldValues, [name]: value }
+    setValues((val) => {
+      return { ...val, [name]: value }
     })
   }, [])
 
@@ -26,14 +26,14 @@ export default function useFormValidation() {
     const valid = evt.target.validity.valid
     const form = evt.target.form
 
-    setValues((oldValues) => {
-      return { ...oldValues, [name]: value }
+    setValues((val) => {
+      return { ...val, [name]: value }
     })
-    setErrors(oldErrors => {
-      return { ...oldErrors, [name]: validationMessage }
+    setErrors(err => {
+      return { ...err, [name]: validationMessage }
     })
-    setIsInputValid((oldValid) => {
-      return { ...oldValid, [name]: valid }
+    setIsInputValid((vali) => {
+      return { ...vali, [name]: valid }
     })
     setIsValid(form.checkValidity())
   }
