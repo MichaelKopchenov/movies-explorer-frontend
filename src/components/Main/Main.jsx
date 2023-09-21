@@ -26,8 +26,6 @@ export default function Main({ name, setLoggedIn }) {
   function onCheckMoviesAll() {
     if (isCheckMoviesAll) {
       setIsCheckMoviesAll(false)
-
-      setMoviesAll(moviesAll.filter((element) => element.duration <= 40))
     } else {
       setIsCheckMoviesAll(true)
       setMoviesAll(movies)
@@ -37,7 +35,6 @@ export default function Main({ name, setLoggedIn }) {
   function onCheckMoviesSave() {
     if (isCheckMoviesSave) {
       setIsCheckMoviesSave(false)
-      setSaveMovie(saveMovie.filter((element) => element.duration <= 40))
     } else {
       setIsCheckMoviesSave(true)
       setSaveMovie(saveMovies)
@@ -45,7 +42,7 @@ export default function Main({ name, setLoggedIn }) {
   }
 
   return (
-    <main className="main">
+    <main>
       {{
         home:
           <>
@@ -61,12 +58,12 @@ export default function Main({ name, setLoggedIn }) {
         profile: <Profile name={name} setLoggedIn={setLoggedIn} />,
         movies:
           <>
-            <SearchForm isCheck={isCheckMoviesAll} changeShot={onCheckMoviesAll} />
+            <SearchForm isCheck={isCheckMoviesAll} changeClick={onCheckMoviesAll} />
             <MoviesCardList movies={moviesAll} />
           </>,
         savedmovies:
           <>
-            <SearchForm isCheck={isCheckMoviesSave} changeShot={onCheckMoviesSave} />
+            <SearchForm isCheck={isCheckMoviesSave} changeClick={onCheckMoviesSave} />
             <MoviesCardList movies={saveMovie} />
           </>
       }[name]}
