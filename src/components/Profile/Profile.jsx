@@ -12,12 +12,12 @@ export default function Profile({ name, setLoggedIn }) {
     isInputValid,
     isValid,
     handleChange,
-    reset
+    resetForm
   } = useFormValidation()
 
   useEffect(() => {
-    reset({username: 'Михаил', email: 'michaelkopchenov@yandex.ru'})
-  }, [reset])
+    resetForm({username: 'Михаил', email: 'michaelkopchenov@yandex.ru'})
+  }, [resetForm])
 
   function onEdit(evt) {
     evt.preventDefault()

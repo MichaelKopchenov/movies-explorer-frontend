@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import './MoviesCard.css'
 
 export default function MoviesCard({
@@ -23,13 +22,17 @@ export default function MoviesCard({
     return (
       <li className='gallery__card'>
         <article>
-          <Link to={trailerLink} target='_blank'>
+          <a
+          href={trailerLink}
+          target='_blank'
+          rel="noreferrer"
+          >
             <img
               src={src}
               alt="#"
               className='gallery__picture'
             />
-          </Link>
+          </a>
           <div className='gallery__card-group'>
             <div className='gallery__text-group'>
               <p className='gallery__subtitle'>{name}</p>

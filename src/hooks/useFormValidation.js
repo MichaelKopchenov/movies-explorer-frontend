@@ -6,6 +6,18 @@ export default function useFormValidation() {
   const [isInputValid, setIsInputValid] = useState({})
   const [isValid, setIsValid] = useState(false)
 
+  const setValue = useCallback((name, value) => {
+    setValues((oldValues) => {
+      return { ...oldValues, [name]: value }
+    })
+  }, [])
+
+  const resetForm = useCallback((data = {}) => {
+    setValues(data)
+    setErrors({})
+    setIsInputValid({})
+    setIsValid(false)
+  },[])
 
   function handleChange(evt) {
     const name = evt.target.name
@@ -13,6 +25,7 @@ export default function useFormValidation() {
     const validationMessage = evt.target.validationMessage
     const valid = evt.target.validity.valid
     const form = evt.target.form
+
     setValues((oldValues) => {
       return { ...oldValues, [name]: value }
     })
@@ -25,18 +38,13 @@ export default function useFormValidation() {
     setIsValid(form.checkValidity())
   }
 
-  const setValue = useCallback((name, value) => {
-    setValues((oldValues) => {
-      return { ...oldValues, [name]: value }
-    })
-  }, [])
-
-  const reset = useCallback((data = {}) => {
-    setValues(data)
-    setErrors({})
-    setIsInputValid({})
-    setIsValid(false)
-  },[])
-
-  return { values, errors, isInputValid, isValid, handleChange, setValue, reset }
+  return {
+    values,
+    errors,
+    isInputValid,
+    isValid,
+    handleChange,
+    setValue,
+    resetForm
+  }
 }
