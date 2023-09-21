@@ -1,6 +1,6 @@
-import './FilterCheckbox.css'
 import uncheckBox from '../../images/checkbox-uncheck.svg'
 import checkBox from '../../images/checkbox-check.svg'
+import './FilterCheckbox.css'
 
 export default function FilterCheckbox({ isCheck, changeShot  }) {
   return (

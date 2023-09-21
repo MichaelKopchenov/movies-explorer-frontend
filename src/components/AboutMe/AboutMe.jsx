@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
-import './AboutMe.css'
 import photo from '../../images/photo.png'
 import Container from "../Container/Container"
+import './AboutMe.css'
 
 export default function AboutMe() {
   return (

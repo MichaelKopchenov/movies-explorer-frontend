@@ -15,7 +15,7 @@ export default function Input({
   return (
     <>
       {selectname !== 'profile' ?
-        <label className='login__label'>
+        <label className='login'>
           <span className='login__subtitle'>{title}</span>
           <input
             required
@@ -31,7 +31,7 @@ export default function Input({
         </label>
         :
         <>
-        <label className='profile__label'>
+        <label className='profile'>
           <span className='profile__subtitle'>{title}</span>
           <input
             required

@@ -1,4 +1,4 @@
-.login__label {
+.login {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -41,7 +41,7 @@
   color: #EE3465;
 }
 
-.profile__label {
+.profile {
   display: flex;
   justify-content: space-between;
   width: 100%;
