@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import photo from '../../images/photo.png'
 import Container from "../Container/Container"
 import './AboutMe.css'
@@ -18,16 +17,17 @@ export default function AboutMe() {
               Недавно начал кодить. С&nbsp;2015 года работал в&nbsp;компании &laquo;СКБ Контур&raquo;.
               После того, как прошёл курс по&nbsp;веб-разработке,
               начал заниматься фриланс-заказами и&nbsp;ушёл с&nbsp;постоянной работы.</p>
-            <Link
-              to={'https://github.com/MichaelKopchenov'}
+            <a
+              href='https://github.com/MichaelKopchenov'
               target='_blank'
-              className="aboutme__link">
+              className="aboutme__link"
+              rel="noreferrer">
                 Github
-            </Link>
+            </a>
           </div>
           <img
             src={photo}
-            alt="#"
+            alt="Аватар"
             className="aboutme__avatar"
           />
         </div>

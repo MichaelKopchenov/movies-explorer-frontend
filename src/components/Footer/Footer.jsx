@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import './Footer.css'
 
 export default function Footer() {
@@ -8,18 +7,20 @@ export default function Footer() {
       <div className="footer__container">
         <p className="footer__subtitle">&copy;{new Date().getFullYear()}</p>
         <nav className="footer__navigation">
-          <Link
-            to={'https://practicum.yandex.ru/'}
+          <a
+            href='https://practicum.yandex.ru/'
             target='_blank'
-            className="footer__link">
+            className="footer__link"
+            rel="noreferrer">
               Яндекс.Практикум
-          </Link>
-          <Link
-            to={'https://github.com/MichaelKopchenov'}
+          </a>
+          <a
+            href='https://github.com/MichaelKopchenov'
             target='_blank'
-            className="footer__link">
+            className="footer__link"
+            rel="noreferrer">
               Github
-          </Link>
+          </a>
         </nav>
       </div>
     </footer>
