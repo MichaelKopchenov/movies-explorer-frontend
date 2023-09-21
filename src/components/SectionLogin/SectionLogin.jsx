@@ -2,7 +2,12 @@ import { Link } from 'react-router-dom'
 import Form from '../Form/Form'
 import './SectionLogin.css'
 
-export default function SectionLogin({ name, children, isValid, onSubmit }) {
+export default function SectionLogin({
+  name,
+  children,
+  isValid,
+  onSubmit
+}) {
   return (
     <section className='login__main'>
       <Link to={'/'} className="login__navigation-home"></Link>
