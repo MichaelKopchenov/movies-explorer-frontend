@@ -23,7 +23,7 @@
 * [Макет диплома. Вариант "dark-5"](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=891-3857&mode=design&t=2o1n0jVrlmCiWxAF-0)
 * [Movies Collection ©2023. Копченов Михаил Викторович](https://github.com/MichaelKopchenov/movies-explorer-frontend/tree/level-2)
 
-P.S. Названия фильмов и их продолжительность взял из другого макета. Ссылки на трейлеры к фильмам нашел сам.
+P.S. Названия фильмов и их продолжительность взял из другого макета. Ссылки на трейлеры к фильмам нашел сам. Некоторые решения были взяты из сети Интернет.
 
 Ниже указана ссылка ев сервер
 

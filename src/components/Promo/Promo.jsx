@@ -1,7 +1,6 @@
 import './Promo.css'
 
 export default function Promo() {
-
   return (
     <section className="promo__main">
       <div className="promo__about">

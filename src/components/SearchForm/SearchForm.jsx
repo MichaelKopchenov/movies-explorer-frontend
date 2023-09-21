@@ -3,7 +3,7 @@ import useFormValidation from '../../hooks/useFormValidation'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import './SearchForm.css'
 
-export default function SearchForm({ isCheck, changeShot }) {
+export default function SearchForm({ isCheck, changeClick }) {
   const [isError,setIsError] = useState(false)
   const {
     values,
@@ -38,10 +38,10 @@ export default function SearchForm({ isCheck, changeShot }) {
             required
             onChange={handleChange}
           />
-          <button className='search_submit'></button>
+          <button className='search_submit' />
         </form>
         <span className={`search__error ${isError && 'search__error_active'}`}>{isError ? 'Начните ввод фильма' : ''}</span>
-        <FilterCheckbox isCheck={isCheck} changeShot={changeShot}/>
+        <FilterCheckbox isCheck={isCheck} changeClick={changeClick}/>
       </div>
     </section>
   )

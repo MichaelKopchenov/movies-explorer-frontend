@@ -19,11 +19,11 @@ export default function Profile({ name, setLoggedIn }) {
     resetForm({username: 'Михаил', email: 'michaelkopchenov@yandex.ru'})
   }, [resetForm])
 
-  function onEdit(evt) {
+  function enterLogin(evt) {
     evt.preventDefault()
   }
 
-  function outLogin() {
+  function exitLogin() {
     setLoggedIn(false)
   }
   return (
@@ -32,7 +32,7 @@ export default function Profile({ name, setLoggedIn }) {
       <Form
         name={name}
         isValid={isValid}
-        onSubmit={onEdit}
+        onSubmit={enterLogin}
       >
         <Input
           selectname={name}
@@ -58,7 +58,7 @@ export default function Profile({ name, setLoggedIn }) {
       </Form>
       <Link
         to={'/'}
-        onClick={outLogin}
+        onClick={exitLogin}
         className='profile__exit'
       >
           Выйти из аккаунта
