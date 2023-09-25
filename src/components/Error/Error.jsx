@@ -3,6 +3,7 @@ import './Error.css'
 
 export default function Error() {
   const navigate = useNavigate()
+
   return (
     <section className='error'>
       <div className='error__container'>

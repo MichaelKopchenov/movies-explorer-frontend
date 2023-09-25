@@ -1,11 +1,23 @@
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
+import CurrentUserContext from '../../contexts/CurrentUserContext'
+import { EmailRegex } from '../../utils/constants'
 import Form from '../Form/Form'
 import Input from '../Input/Input'
 import useFormValidation from '../../hooks/useFormValidation'
 import './Profile.css'
 
-export default function Profile({ name, setLoggedIn }) {
+export default function Profile({
+  name,
+  logOut,
+  editUserData,
+  setIsError,
+  isSuccess,
+  setSuccess,
+  setIsEdit,
+  isEdit
+})
+{
   const {
     values,
     errors,
@@ -15,24 +27,36 @@ export default function Profile({ name, setLoggedIn }) {
     resetForm
   } = useFormValidation()
 
+  const currentUser = useContext(CurrentUserContext)
+
   useEffect(() => {
-    resetForm({username: 'Михаил', email: 'michaelkopchenov@yandex.ru'})
-  }, [resetForm])
+    resetForm({username: currentUser.name, email: currentUser.email})
+  }, [
+      resetForm,
+      isEdit,
+      currentUser
+     ])
 
-  function enterLogin(evt) {
+  function onSubmit(evt) {
     evt.preventDefault()
+    editUserData(values.username, values.email)
   }
 
-  function exitLogin() {
-    setLoggedIn(false)
-  }
   return (
     <section className="profile__main">
-      <h2 className='profile__title'>{`Привет, Михаил!`}</h2>
+      <h2 className='profile__title'>
+        {`Привет, ${currentUser.name}!`}
+      </h2>
       <Form
         name={name}
         isValid={isValid}
-        onSubmit={enterLogin}
+        onSubmit={onSubmit}
+        setIsError={setIsError}
+        values={values}
+        isSuccess={isSuccess}
+        setSuccess={setSuccess}
+        setIsEdit={setIsEdit}
+        isEdit={isEdit}
       >
         <Input
           selectname={name}
@@ -44,6 +68,7 @@ export default function Profile({ name, setLoggedIn }) {
           isInputValid={isInputValid.username}
           error={errors.username}
           onChange={handleChange}
+          isEdit={isEdit}
         />
         <Input
           selectname={name}
@@ -54,14 +79,16 @@ export default function Profile({ name, setLoggedIn }) {
           isInputValid={isInputValid.email}
           error={errors.email}
           onChange={handleChange}
+          pattern={EmailRegex}
+          isEdit={isEdit}
         />
       </Form>
       <Link
         to={'/'}
-        onClick={exitLogin}
+        onClick={logOut}
         className='profile__exit'
       >
-          Выйти из аккаунта
+        Выйти из аккаунта
       </Link>
     </section>
   )

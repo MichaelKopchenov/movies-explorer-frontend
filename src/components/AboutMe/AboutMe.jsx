@@ -1,4 +1,4 @@
-import photo from '../../images/photo.png'
+import avatar from '../../images/Avatar.jpeg'
 import Container from "../Container/Container"
 import './AboutMe.css'
 
@@ -26,7 +26,7 @@ export default function AboutMe() {
             </a>
           </div>
           <img
-            src={photo}
+            src={avatar}
             alt="Аватар"
             className="aboutme__avatar"
           />

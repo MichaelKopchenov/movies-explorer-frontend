@@ -1,11 +1,13 @@
 import Input from "../Input/Input";
 import SectionLogin from "../SectionLogin/SectionLogin";
 import useFormValidation from '../../hooks/useFormValidation'
-import { useNavigate } from "react-router-dom";
 
-
-export default function Login({ name, setLoggedIn }) {
-  const navigate = useNavigate()
+export default function Login({
+  name,
+  setIsError,
+  onLogin
+})
+{
   const {
     values,
     errors,
@@ -14,17 +16,16 @@ export default function Login({ name, setLoggedIn }) {
     handleChange
   } = useFormValidation()
 
-  function onLogin(evt) {
+  function onSubmit(evt) {
     evt.preventDefault()
-    navigate('/movies')
-    setLoggedIn(true)
+    onLogin(values.email, values.password)
   }
 
   return (
     <SectionLogin
       name={name}
       isValid={isValid}
-      onSubmit={onLogin}
+      onSubmit={onSubmit}
     >
       <Input
         name='email'
@@ -33,7 +34,11 @@ export default function Login({ name, setLoggedIn }) {
         value={values.email}
         isInputValid={isInputValid.email}
         error={errors.email}
-        onChange={handleChange}
+        onChange={(evt) => {
+          handleChange(evt)
+          setIsError(false)
+        }}
+        placeholder='Введите вашу электронную почту'
       />
       <Input
         name='password'
@@ -43,7 +48,11 @@ export default function Login({ name, setLoggedIn }) {
         value={values.password}
         isInputValid={isInputValid.password}
         error={errors.password}
-        onChange={handleChange}
+        onChange={(evt) => {
+          handleChange(evt)
+          setIsError(false)
+        }}
+        placeholder='Введите ваш пароль'
       />
     </SectionLogin>
   )

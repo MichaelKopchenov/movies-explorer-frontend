@@ -43,6 +43,7 @@
 }
 
 /* Кнопки профиля */
+
 .profile__error-auth {
   display: block;
   margin: 166px 0 0 0;
@@ -57,6 +58,15 @@
 
 .profile__error-auth_active {
   visibility: visible;
+}
+
+.profile__error-auth_type_err {
+  visibility: visible;
+}
+
+.profile__error-auth_type_ok {
+  visibility: visible;
+  color: var(--secondary-font-color);
 }
 
 .profile__submit {

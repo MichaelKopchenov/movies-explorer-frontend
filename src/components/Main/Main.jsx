@@ -7,40 +7,26 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Error from '../Error/Error'
 import Profile from '../Profile/Profile';
-import SearchForm from '../SearchForm/SearchForm';
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { movies, saveMovies } from '../../utils/constants'
-import { useEffect, useState } from 'react';
+import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 
-export default function Main({ name, setLoggedIn }) {
-  const [moviesAll, setMoviesAll] = useState([])
-  const [saveMovie, setSaveMovie] = useState([])
-  const [isCheckMoviesAll, setIsCheckMoviesAll] = useState(true)
-  const [isCheckMoviesSave, setIsCheckMoviesSave] = useState(true)
+export default function Main({
+  name,
+  onRegister,
+  onLogin,
+  logOut,
+  editUserData,
+  setIsError,
+  savedMovies,
+  onDelete,
+  addMovie,
+  isSuccess,
+  setSuccess,
+  setIsEdit,
+  isEdit
+})
 
-  useEffect(() => {
-    setMoviesAll(movies)
-    setSaveMovie(saveMovies)
-  }, [])
-
-  function onCheckMoviesAll() {
-    if (isCheckMoviesAll) {
-      setIsCheckMoviesAll(false)
-    } else {
-      setIsCheckMoviesAll(true)
-      setMoviesAll(movies)
-    }
-  }
-
-  function onCheckMoviesSave() {
-    if (isCheckMoviesSave) {
-      setIsCheckMoviesSave(false)
-    } else {
-      setIsCheckMoviesSave(true)
-      setSaveMovie(saveMovies)
-    }
-  }
-
+{
   return (
     <main>
       {{
@@ -52,19 +38,34 @@ export default function Main({ name, setLoggedIn }) {
             <AboutMe />
             <Portfolio />
           </>,
-        signin: <Login name={name} setLoggedIn={setLoggedIn} />,
-        signup: <Register name={name} setLoggedIn={setLoggedIn} />,
+        signin: <Login name={name} onLogin={onLogin} setIsError={setIsError} />,
+        signup: <Register name={name} onRegister={onRegister} setIsError={setIsError} />,
         error: <Error />,
-        profile: <Profile name={name} setLoggedIn={setLoggedIn} />,
+        profile: <Profile
+          name={name}
+          logOut={logOut}
+          editUserData={editUserData}
+          setIsError={setIsError}
+          isSuccess={isSuccess}
+          setSuccess={setSuccess}
+          setIsEdit={setIsEdit}
+          isEdit={isEdit}
+        />,
         movies:
           <>
-            <SearchForm isCheck={isCheckMoviesAll} changeClick={onCheckMoviesAll} />
-            <MoviesCardList movies={moviesAll} />
+            <Movies
+              savedMovies={savedMovies}
+              addMovie={addMovie}
+              setIsError={setIsError}
+            />
           </>,
         savedmovies:
           <>
-            <SearchForm isCheck={isCheckMoviesSave} changeClick={onCheckMoviesSave} />
-            <MoviesCardList movies={saveMovie} />
+            <SavedMovies
+              savedMovie={savedMovies}
+              onDelete={onDelete}
+              setIsError={setIsError}
+            />
           </>
       }[name]}
     </main>

@@ -1,25 +1,63 @@
-import { useState } from 'react'
+import { useEffect, useContext } from 'react'
+import { useLocation } from 'react-router-dom'
+import ErrorContext from '../../contexts/ErrorContext'
 import useFormValidation from '../../hooks/useFormValidation'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import './SearchForm.css'
 
-export default function SearchForm({ isCheck, changeClick }) {
-  const [isError,setIsError] = useState(false)
+export default function SearchForm({
+  isCheck,
+  changeClick,
+  searchedMovie,
+  searchMovies,
+  setIsError,
+  firstEntrance,
+  savedMovie
+})
+{
+  const isError = useContext(ErrorContext)
+  const { pathname } = useLocation()
   const {
     values,
-    isValid,
-    handleChange
+    handleChange,
+    resetForm
   } = useFormValidation()
 
   function onSubmit(evt) {
     evt.preventDefault()
-    if (!isValid) {
-      setIsError(true)
-      return
-    } else {
-      setIsError(false)
-    }
+    if (evt
+        .target
+        .search
+        .value
+        )
+        {
+          searchMovies(evt.target.search.value)
+          setIsError(false)
+        } else
+        {
+          setIsError(true)
+        }
   }
+
+  useEffect(() => {
+    if ((pathname
+        === '/saved-movies'
+        && savedMovie.length
+        === 0
+        ))
+      {
+        resetForm({ search: '' })
+      } else {
+        resetForm({ search: searchedMovie })
+      }
+      setIsError(false)
+    }, [
+        searchedMovie,
+        resetForm,
+        setIsError,
+        pathname,
+        savedMovie
+      ])
 
   return (
     <section className='search__main'>
@@ -28,7 +66,6 @@ export default function SearchForm({ isCheck, changeClick }) {
           noValidate
           className='search__form'
           name={'SearchForm'}
-          value={values.search}
           onSubmit={onSubmit}
         >
           <input
@@ -36,12 +73,45 @@ export default function SearchForm({ isCheck, changeClick }) {
             placeholder='Фильм'
             className='search__input'
             required
-            onChange={handleChange}
+            value={values.search || ''}
+            onChange={(evt) => {
+              handleChange(evt)
+              setIsError(false)
+            }}
+            disabled={
+              savedMovie
+              ? (savedMovie.length === 0 && true)
+              : false
+            }
           />
-          <button className='search_submit' />
+          <button
+            type='submit'
+            className={`
+              search__submit
+              ${savedMovie
+              ? (pathname
+                  === '/saved-movies'
+                  && savedMovie.length
+                  === 0
+                )
+              && 'search__submit_disabled'
+              : ''
+              }`
+            }
+          />
         </form>
-        <span className={`search__error ${isError && 'search__error_active'}`}>{isError ? 'Начните ввод фильма' : ''}</span>
-        <FilterCheckbox isCheck={isCheck} changeClick={changeClick}/>
+        <span className={`
+          search__error
+          ${isError && 'search__error_active'}
+          `}
+        >
+          {'Введите ключевое слово'}
+        </span>
+        <FilterCheckbox
+          isCheck={isCheck}
+          changeClick={changeClick}
+          firstEntrance={firstEntrance}
+        />
       </div>
     </section>
   )

@@ -1,5 +1,7 @@
 .gallery__main {
-  padding: 70px 70px 80px;
+  padding: 70px
+           70px
+           80px;
 }
 
 .gallery__ul {
@@ -32,6 +34,11 @@
 
 .gallery__else_hidden {
   visibility: hidden;
+}
+
+.gallery__error {
+  text-align: center;
+  color: var(--secondary-font-color);
 }
 
 /* Адаптив под экраны */
