@@ -44,7 +44,7 @@ export default function Movies({
   function searchMovies(search) {
     if (allMovies.length === 0) {
       setIsLoading(true)
-      moviesApi.getMovies()
+      moviesApi.takeMovies()
         .then((res) => {
           setAllMovies(res)
           setIsCheck(false)

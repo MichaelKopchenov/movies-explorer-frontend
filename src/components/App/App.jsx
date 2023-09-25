@@ -34,10 +34,10 @@ function App() {
 
   const navigate = useNavigate()
 
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
 
   useEffect(() => {
-    if (token) {
+    if (loggedIn) {
       Promise.all([mainApi.dataOfUser(), mainApi.getMovies()])
         .then(([userData, dataMovies]) => {
           setSavedMovies(dataMovies.reverse())
@@ -48,10 +48,12 @@ function App() {
         .catch((err) => {
           console.error(`Ошибка при загрузке начальных данных ${err}`)
           setIsCheckToken(false)
+          localStorage.clear()
         })
     } else {
       setLoggedIn(false)
       setIsCheckToken(false)
+      localStorage.clear()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn])
@@ -68,22 +70,8 @@ function App() {
   {
     setIsSend(true)
     mainApi.register(username, email, password)
-      .then((res) => {
-        if (res) {
-          setLoggedIn(false)
-          mainApi.login(email, password)
-            .then(res => {
-              localStorage.setItem('jwt', res.token)
-              setLoggedIn(true)
-              navigate('/movies')
-              window.scrollTo(0, 0)
-            })
-            .catch((err) => {
-              setIsError(true)
-              console.error(`Ошибкак при авторизации после регистрации ${err}`)
-            })
-            .finally(() => setIsSend(false))
-        }
+      .then(() => {
+        handleLogin(email, password)
       })
       .catch((err) => {
         setIsError(true)
@@ -109,7 +97,7 @@ function App() {
   }
 
   function logOut() {
-    token.clear()
+    localStorage.clear()
     setLoggedIn(false)
     navigate('/')
   }
