@@ -10,13 +10,8 @@ class Main {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  _demand(url, options) {
-    return fetch(`${this._url}${url}`, options)
-      .then(this._getResponseData)
-  }
-
   register(username, email, password) {
-    return this._demand('/signup', {
+    return fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -27,10 +22,11 @@ class Main {
         password: password
       })
     })
+    .then(this._getResponseData);
   }
 
   login(email, password) {
-    return this._demand('/signin', {
+    return fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -40,19 +36,21 @@ class Main {
         password: password
       })
     })
+    .then(this._getResponseData);
   }
 
   dataOfUser() {
-    return this._demand('/users/me', {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`,
       }
     })
+    .then(this._getResponseData);
   }
 
 
   setNewProfileData(username, email) {
-    return this._demand('/users/me', {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -63,18 +61,20 @@ class Main {
         email: email,
       })
     })
+    .then(this._getResponseData);
   }
 
   getMovies() {
-    return this._demand('/movies', {
+    return fetch(`${this._baseUrl}/movies`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`,
       }
     })
+    .then(this._getResponseData);
   }
 
   setNewMovie(data) {
-    return this._demand('/movies', {
+    return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -94,15 +94,17 @@ class Main {
         nameEN: data.nameEN
       })
     })
+    .then(this._getResponseData);
   }
 
   deleteMyMovie(cardId) {
-    return this._demand(`/movies/${cardId}`, {
+    return fetch(`${this._baseUrl}/movies/${cardId}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`,
       }
     })
+    .then(this._getResponseData);
   }
 }
 
