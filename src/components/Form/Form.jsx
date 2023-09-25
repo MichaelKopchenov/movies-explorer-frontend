@@ -24,9 +24,9 @@ export default function Form({
   const isSend = useContext(SendContext)
   const currentUser = useContext(CurrentUserContext)
 
-  useEffect(() => {
-    setIsError(false)
-  }, [setIsError, values])
+  // useEffect(() => {
+  //   setIsError(true)
+  // }, [setIsError, values])
 
   useEffect(() => {
     if (pathname === '/profile') {
