@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
-import { MEDIUM_SCREEN } from '../../utils/MovieConstants';
+import { MEDIUM_SCREEN } from '../../utils/constants';
 import {
   HOME_ROUTE,
   REGISTRATION_ROUTE,

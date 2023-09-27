@@ -12,7 +12,7 @@ import {
   FOUR_CARDS,
   THREE_CARDS,
   TWO_CARDS
-} from "../../utils/MovieConstants";
+} from "../../utils/constants";
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import './MoviesCardList.css';

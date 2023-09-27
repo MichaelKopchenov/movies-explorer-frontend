@@ -3,7 +3,7 @@ import {
   useEffect,
   useState
 } from "react";
-import { DURATION_TIME } from "../../utils/MovieConstants";
+import { DURATION_TIME } from "../../utils/constants";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 

@@ -1,3 +1,4 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts/fonts.css);
-@import url(./styles/standatrStyles.css);
+@import url(./styles/page.css);
+@import url(./styles/root.css);
