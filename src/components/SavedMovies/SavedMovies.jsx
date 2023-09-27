@@ -3,6 +3,7 @@ import {
   useEffect,
   useState
 } from "react";
+import { DURATION_TIME } from "../../utils/MovieConstants";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
@@ -12,91 +13,97 @@ export default function SavedMovies({
   setIsError
 })
 {
-  const [filteredMovies, setFilteredMovies] = useState(savedMovie)
-  const [searchedMouvie, setSearchedMovie] = useState('')
-  const [isCheck, setIsCheck] = useState(false)
-  const [firstEntrance, setFirstEntrance] = useState(true)
+  const [filteredMovies, setFilteredMovies] = useState(savedMovie);
+  const [searchedMovie, setSearchedMovie] = useState('');
+  const [isCheck, setIsCheck] = useState(false);
+  const [firstLog, setFirstLog] = useState(true);
 
   const filter = useCallback((
     search,
     isCheck,
     movies
-    ) => {
-      setSearchedMovie(search)
+    ) =>
+    {
+      setSearchedMovie(search);
       setFilteredMovies(movies.filter((movie) => {
         const searchName = movie
           .nameRU
           .toLowerCase()
-          .includes(search.toLowerCase())
+          .includes(search.toLowerCase());
         return isCheck
-          ? (searchName && movie.duration <= 40)
+          ? (searchName
+              && movie.duration
+              <= DURATION_TIME
+            )
           : searchName
-      }))
-  }, [])
+      }
+      )
+      );
+  }, []);
 
   function searchMovies(search) {
-    setFirstEntrance(false)
+    setFirstLog(false);
     filter(
       search,
       isCheck,
       savedMovie
-    )
+    );
   }
 
   useEffect(() => {
     if (savedMovie.length === 0) {
-      setFirstEntrance(true)
+      setFirstLog(true);
     } else {
-      setFirstEntrance(false)
+      setFirstLog(false);
     }
     filter(
-      searchedMouvie,
+      searchedMovie,
       isCheck,
       savedMovie
-    )
+    );
   }, [
       filter,
       savedMovie,
       isCheck,
-      searchedMouvie
-    ])
+      searchedMovie
+    ]);
 
-  function changeShort() {
+  function changeFilter() {
     if (isCheck) {
-      setIsCheck(false)
-      setFirstEntrance(false)
+      setIsCheck(false);
+      setFirstLog(false);
       filter(
-        searchedMouvie,
+        searchedMovie,
         false,
         savedMovie
-      )
+      );
     } else {
-      setIsCheck(true)
-      setFirstEntrance(false)
+      setIsCheck(true);
+      setFirstLog(false);
       filter(
-        searchedMouvie,
+        searchedMovie,
         true,
         savedMovie
-      )
+      );
     }
-  }
+  };
 
   return (
     <>
       <SearchForm
         isCheck={isCheck}
         searchMovies={searchMovies}
-        searchedMovie={searchedMouvie}
-        changeShort={changeShort}
+        searchedMovie={searchedMovie}
+        changeFilter={changeFilter}
         setIsError={setIsError}
-        firstEntrance={firstEntrance}
+        firstLog={firstLog}
         savedMovie={savedMovie}
       />
       <MoviesCardList
         movies={filteredMovies}
         onDelete={onDelete}
-        firstEntrance={firstEntrance}
+        firstLog={firstLog}
       />
     </>
-  )
-}
+  );
+};

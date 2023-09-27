@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-const SendContext = createContext()
+const SendContext = createContext();
 
 export default SendContext;

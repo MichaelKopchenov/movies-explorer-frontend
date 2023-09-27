@@ -1,56 +1,121 @@
-import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
-import ErrorContext from '../../contexts/ErrorContext'
-import './SearchForm.css'
-import { useEffect } from 'react'
-import { useContext } from 'react'
-import useFormValidation from '../../hooks/useFormValidation'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
+import { useEffect, useContext } from 'react';
+import { FAVORITE_MOVIES_ROUTE } from '../../utils/RouteConstants';
+import { INPUT_MOVIE_TEXT_ERROR } from '../../utils/ErrorTexts';
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
+import ErrorContext from '../../contexts/ErrorContext';
+import useFormValidation from '../../hooks/useFormValidation';
+import './SearchForm.css';
 
-export default function SearchForm({ isCheck, changeShort, searchedMovie, searchMovies, setIsError, firstEntrance, savedMovie, }) {
-  const { pathname } = useLocation()
-  const isError = useContext(ErrorContext)
-  const { values, handleChange, resetForm } = useFormValidation()
+export default function SearchForm({
+  isCheck,
+  changeFilter,
+  searchedMovie,
+  searchMovies,
+  setIsError,
+  firstLog,
+  savedMovie
+})
+{
+  const { pathname } = useLocation();
+  const isError = useContext(ErrorContext);
+  const {
+    values,
+    handleChange,
+    resetForm
+  } = useFormValidation();
 
   useEffect(() => {
-    if ((pathname === '/saved-movies' && savedMovie.length === 0)) {
-      resetForm({ search: '' })
+    if ((pathname
+        === FAVORITE_MOVIES_ROUTE
+        && savedMovie.length
+        === 0
+        )
+      )
+    {
+      resetForm({ search: '' });
     } else {
-      resetForm({ search: searchedMovie })
+      resetForm({ search: searchedMovie });
     }
     setIsError(false)
-  }, [searchedMovie, resetForm, setIsError, pathname, savedMovie])
+  }, [
+      searchedMovie,
+      resetForm,
+      setIsError,
+      pathname,
+      savedMovie
+    ]
+);
 
   function onSubmit(evt) {
-    evt.preventDefault()
-    if (evt.target.search.value) {
-      searchMovies(evt.target.search.value)
-      setIsError(false)
+    evt.preventDefault();
+    if (evt
+        .target
+        .search
+        .value
+      )
+    {
+      searchMovies(evt
+        .target
+        .search
+        .value
+      );
+      setIsError(false);
     } else {
-      setIsError(true)
+      setIsError(true);
     }
-  }
+  };
 
   return (
-    <section className='search page__search'>
+    <section className='search__main'>
       <div className='search__container'>
-        <form noValidate className='search__form' name={'SearchForm'} onSubmit={onSubmit}>
+        <form
+          noValidate
+          className='search__form'
+          name={'SearchForm'}
+          onSubmit={onSubmit}
+        >
           <input
+            required
             type="text"
             name='search'
             placeholder='Фильм'
             className='search__input'
             value={values.search || ''}
             onChange={(evt) => {
-              handleChange(evt)
-              setIsError(false)
+              handleChange(evt);
+              setIsError(false);
             }}
-            disabled={savedMovie ? (savedMovie.length === 0 && true) : false}
-            required
+            disabled={savedMovie
+              ? (savedMovie.length
+                  === 0
+                  && true
+                )
+              : false
+            }
           />
-          <button type='submit' className={`search__submit ${savedMovie ? (pathname === '/saved-movies' && savedMovie.length === 0) && 'search__submit_disabled' : ''}`}></button>
+          <button type='submit' className={`
+            search__submit
+            ${savedMovie
+              ? (pathname
+                === FAVORITE_MOVIES_ROUTE
+                && savedMovie.length
+                === 0
+                )
+              && 'search__submit_disabled'
+              : ''
+            }`
+          }
+          />
         </form>
-        <span className={`search__error ${isError && 'search__error_active'}`}>{'Введите ключевое слово'}</span>
-        <FilterCheckbox isCheck={isCheck} changeShort={changeShort} firstEntrance={firstEntrance} />
+        <span className={`search__error ${isError && 'search__error_active'}`}>
+          {INPUT_MOVIE_TEXT_ERROR}
+        </span>
+        <FilterCheckbox
+          isCheck={isCheck}
+          changeFilter={changeFilter}
+          firstLog={firstLog}
+        />
       </div>
     </section>
   )

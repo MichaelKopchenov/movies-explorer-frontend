@@ -1,90 +1,93 @@
-import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import MoviesCard from '../MoviesCard/MoviesCard'
-import Preloader from '../Preloader/Preloader'
-import './MoviesCardList.css'
-
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { MOVIES_ROUTE } from '../../utils/RouteConstants';
 import {
-  MaxScreen,
-  MediumScreen,
-  SmallScreen,
-  InitMoreMaxScreen,
-  InitLessMaxScreen,
-  InitMediumScreen,
-  InitSmallScreen,
-  StepMaxScreen,
-  StepMediumScreen,
-  StepSmallScreen
-} from "../../utils/constants";
+  MAX_SCREEN,
+  STANDART_SCREEN,
+  SML_SCREEN,
+  SIXTEEN_CARDS,
+  TWELVE_CARDS,
+  EIGHT_CARDS,
+  FIVE_CARDS,
+  FOUR_CARDS,
+  THREE_CARDS,
+  TWO_CARDS
+} from "../../utils/MovieConstants";
+import MoviesCard from '../MoviesCard/MoviesCard';
+import Preloader from '../Preloader/Preloader';
+import './MoviesCardList.css';
 
 export default function MoviesCardList({
   movies,
   onDelete,
-  addMovie,
+  setNewMovie,
   savedMovies,
   isLoading,
   serverError,
-  firstEntrance
+  firstLog
 })
 {
-  const [count, setCount] = useState(printCards().init)
-  const fact = movies.slice(0, count)
-  const { pathname } = useLocation()
+  const [count, setCount] = useState(showCards().init);
+  const fact = movies.slice(0, count);
+  const { pathname } = useLocation();
 
-  function printCards() {
-    const counter = { init: InitMoreMaxScreen, step: StepMaxScreen }
-    if (window.innerWidth < MaxScreen) {
-      counter.init = InitLessMaxScreen
-      counter.step = StepMediumScreen
+  function showCards() {
+    const counter = { init: SIXTEEN_CARDS, step: FOUR_CARDS }
+    if (window.innerWidth < MAX_SCREEN) {
+      counter.init = TWELVE_CARDS;
+      counter.step = THREE_CARDS;
     }
-    if (window.innerWidth < MediumScreen) {
-      counter.init = InitMediumScreen
-      counter.step = StepSmallScreen
+    if (window.innerWidth < STANDART_SCREEN) {
+      counter.init = EIGHT_CARDS;
+      counter.step = TWO_CARDS;
     }
-    if (window.innerWidth < SmallScreen) {
-      counter.init = InitSmallScreen
-      counter.step = StepSmallScreen
+    if (window.innerWidth < SML_SCREEN) {
+      counter.init = FIVE_CARDS;
+      counter.step = TWO_CARDS;
     }
-    return counter
-  }
+    return counter;
+  };
 
   function clickMore() {
-    setCount(count + printCards().step)
-  }
+    setCount(count + showCards().step);
+  };
 
   useEffect(() => {
-    if (pathname === '/movies') {
-      setCount(printCards().init)
-      function printCardsForResize() {
-        if (window.innerWidth >= StepMaxScreen) {
-          setCount(printCards().init)
+    if (pathname === MOVIES_ROUTE) {
+      setCount(showCards().init);
+      function showCardsResize() {
+        if (window.innerWidth >= FOUR_CARDS) {
+          setCount(showCards().init);
         }
-        if (window.innerWidth < StepMaxScreen) {
-          setCount(printCards().init)
+        if (window.innerWidth < FOUR_CARDS) {
+          setCount(showCards().init);
         }
-        if (window.innerWidth < MediumScreen) {
-          setCount(printCards().init)
+        if (window.innerWidth < STANDART_SCREEN) {
+          setCount(showCards().init);
         }
-        if (window.innerWidth < SmallScreen) {
-          setCount(printCards().init)
+        if (window.innerWidth < SML_SCREEN) {
+          setCount(showCards().init);
         }
-      }
-      window.addEventListener('resize', printCardsForResize)
-      return () => window.removeEventListener('resize', printCardsForResize)
+      };
+      window.addEventListener('resize', showCardsResize);
+      return () => window.removeEventListener('resize', showCardsResize);
     }
-  }, [pathname, movies])
+  }, [pathname, movies]);
 
   return (
-    <section className='gallery__main'>
-      <ul className='gallery__ul'>
-        {isLoading ? <Preloader />
-          : (pathname === '/movies' && fact.length !== 0)
+    <section className='movies__main'>
+      <ul className='movies__ul'>
+        {isLoading
+          ? <Preloader />
+          : (pathname
+              === MOVIES_ROUTE
+              && fact.length !== 0)
           ? fact.map(data => {
               return (
                 <MoviesCard
                   key={data.id}
                   data={data}
-                  addMovie={addMovie}
+                  setNewMovie={setNewMovie}
                   savedMovies={savedMovies}
                 />
               )
@@ -100,36 +103,40 @@ export default function MoviesCardList({
             )
           })
           : serverError
-          ? <span className='gallery__error'>
+          ? <span className='movies__error'>
               «Во время запроса произошла ошибка.
               Возможно, проблема с соединением или сервер недоступен.
               Подождите немного и попробуйте ещё раз»
             </span>
-          : !firstEntrance
-          ? <span className='gallery__error'>
+          : !firstLog
+          ? <span className='movies__error'>
               «Ничего не найдено»
             </span>
-          : pathname === '/movies'
-          ? <span className='gallery__error'>
+          : pathname
+            === '/movies'
+          ? <span className='movies__error'>
               «Чтобы увидеть список фильмоа выполните поиск»
             </span>
-          : <span className='gallery__error'>
+          : <span className='movies__error'>
               «Нет сохранённых фильмов»
             </span>
         }
       </ul>
-      {pathname === '/movies'
+      {pathname
+        === MOVIES_ROUTE
         && <button
             type='button'
+            onClick={clickMore}
             className={`
-              gallery__else
-              ${count >= movies.length && 'gallery__else_hidden'
+              movies__else
+              ${count
+                >= movies.length
+                && 'movies__else_hidden'
               }`
             }
-            onClick={clickMore}
            >
             Ёще
            </button>}
     </section>
-  )
-}
+  );
+};

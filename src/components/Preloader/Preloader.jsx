@@ -1,5 +1,5 @@
-import React from 'react'
-import './Preloader.css'
+import React from 'react';
+import './Preloader.css';
 
 const Preloader = ({ name }) => {
   return (
@@ -8,8 +8,9 @@ const Preloader = ({ name }) => {
       ${name === 'btn'
       || name === 'smlbtn'
       ? 'preloader_type_btn'
-      : ''}
-      `}
+      : ''
+      }
+    `}
     >
       <div className={`
         preloader__container
@@ -17,8 +18,9 @@ const Preloader = ({ name }) => {
         ? 'preloader__container_type_btn'
         : name === 'smlbtn'
         ? 'preloader__container_type_smlbtn'
-        : ''}
-        `}
+        : ''
+        }
+      `}
       >
         <span className={`
           preloader__round
@@ -26,12 +28,13 @@ const Preloader = ({ name }) => {
           ? 'preloader__round_type_btn'
           : name === 'smlbtn'
           ? 'preloader__round_type_smlbtn'
-          : ''}
-          `}
+          : ''
+          }
+        `}
         />
       </div>
     </div>
-  )
+  );
 };
 
-export default Preloader
+export default Preloader;

@@ -1,6 +1,11 @@
-import { EmailRegex } from "../../utils/constants";
+import {
+  PLACEHOLDER_NAME_TEXT,
+  PLACEHOLDER_EMAIL_TEXT,
+  PLACEHOLDER_PASS_TEXT
+} from "../../utils/PlaceholderConstants";
+import { EMAIL_REG } from "../../utils/AuthorConstants";
 import SectionLogin from "../SectionLogin/SectionLogin";
-import useFormValidation from '../../hooks/useFormValidation'
+import useFormValidation from '../../hooks/useFormValidation';
 import Input from "../Input/Input";
 
 export default function Login({
@@ -15,16 +20,16 @@ export default function Login({
     isInputValid,
     isValid,
     handleChange
-  } = useFormValidation()
+  } = useFormValidation();
 
   function onSubmit(evt) {
-    evt.preventDefault()
+    evt.preventDefault();
     onRegister(
       values.username,
       values.email,
       values.password
-    )
-  }
+    );
+  };
 
   return (
     <SectionLogin
@@ -40,12 +45,13 @@ export default function Login({
         minLength = '2'
         value={values.username}
         isInputValid={isInputValid.username}
+        placeholder={PLACEHOLDER_NAME_TEXT}
         error={errors.username}
         onChange={(evt) => {
-          handleChange(evt)
-          setIsError(false)
-        }}
-        placeholder='Введите ваше имя'
+          handleChange(evt);
+          setIsError(false);
+        }
+        }
       />
       <Input
         name='email'
@@ -53,13 +59,14 @@ export default function Login({
         title='E-mail'
         value={values.email}
         isInputValid={isInputValid.email}
+        placeholder={PLACEHOLDER_EMAIL_TEXT}
         error={errors.email}
+        pattern={EMAIL_REG}
         onChange={(evt) => {
-          handleChange(evt)
-          setIsError(false)
-        }}
-        pattern={EmailRegex}
-        placeholder='Введите вашу электронную почту'
+          handleChange(evt);
+          setIsError(false);
+        }
+        }
       />
       <Input
         name='password'
@@ -68,13 +75,14 @@ export default function Login({
         minLength = '3'
         value={values.password}
         isInputValid={isInputValid.password}
+        placeholder={PLACEHOLDER_PASS_TEXT}
         error={errors.password}
         onChange={(evt) => {
-          handleChange(evt)
-          setIsError(false)
-        }}
-        placeholder='Введите ваш пароль'
+          handleChange(evt);
+          setIsError(false);
+        }
+        }
       />
     </SectionLogin>
-  )
-}
+  );
+};

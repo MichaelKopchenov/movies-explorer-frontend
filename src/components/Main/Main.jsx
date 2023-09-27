@@ -15,17 +15,16 @@ export default function Main({
   onRegister,
   onLogin,
   logOut,
-  editUserData,
+  onUpdateUser,
   setIsError,
   savedMovies,
   onDelete,
-  addMovie,
-  isSuccess,
-  setSuccess,
-  setIsEdit,
-  isEdit
+  setNewMovie,
+  isOk,
+  setOk,
+  setIsTransform,
+  isTransform
 })
-
 {
   return (
     <main>
@@ -38,24 +37,32 @@ export default function Main({
             <AboutMe />
             <Portfolio />
           </>,
-        signin: <Login name={name} onLogin={onLogin} setIsError={setIsError} />,
-        signup: <Register name={name} onRegister={onRegister} setIsError={setIsError} />,
+        signin: <Login
+          name={name}
+          onLogin={onLogin}
+          setIsError={setIsError}
+        />,
+        signup: <Register
+          name={name}
+          onRegister={onRegister}
+          setIsError={setIsError}
+        />,
         error: <Error />,
         profile: <Profile
           name={name}
           logOut={logOut}
-          editUserData={editUserData}
+          onUpdateUser={onUpdateUser}
           setIsError={setIsError}
-          isSuccess={isSuccess}
-          setSuccess={setSuccess}
-          setIsEdit={setIsEdit}
-          isEdit={isEdit}
+          isOk={isOk}
+          setOk={setOk}
+          setIsTransform={setIsTransform}
+          isTransform={isTransform}
         />,
         movies:
           <>
             <Movies
               savedMovies={savedMovies}
-              addMovie={addMovie}
+              setNewMovie={setNewMovie}
               setIsError={setIsError}
             />
           </>,
@@ -67,7 +74,9 @@ export default function Main({
               setIsError={setIsError}
             />
           </>
-      }[name]}
+      }
+        [name]
+      }
     </main>
-  )
-}
+  );
+};

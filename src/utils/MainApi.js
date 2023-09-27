@@ -1,17 +1,23 @@
-class MainApi {
+import { BACKEND_URL } from './MovieConstants';
+
+class ApiMain {
   constructor(options) {
-    this._url = options.baseUrl;
-  }
+    this._baseUrl = options.baseUrl;
+  };
 
   _getResponseData(res) {
     if (res.ok) {
         return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);
-  }
+  };
 
-  async register(username, email, password) {
-    const res = await fetch(`${this._url}/signup`, {
+  async register(
+    username,
+    email,
+    password
+    ) {
+      const res = await fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -23,10 +29,10 @@ class MainApi {
       })
     });
     return this._getResponseData(res);
-  }
+  };
 
   async login(email, password) {
-    const res = await fetch(`${this._url}/signin`, {
+    const res = await fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -37,24 +43,28 @@ class MainApi {
       })
     });
     return this._getResponseData(res);
-  }
+  };
 
-  async dataOfUser() {
-    const res = await fetch(`${this._url}/users/me`, {
+  async dataOfUser(token) {
+    const res = await fetch(`${this._baseUrl}/users/me`, {
       headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Authorization": `Bearer ${token}`
       }
     });
     return this._getResponseData(res);
-  }
+  };
 
 
-  async setNewProfileData(username, email) {
-    const res = await fetch(`${this._url}/users/me`, {
+  async setNewDataOfUser(
+    username,
+    email,
+    token
+    ) {
+      const res = await fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
         name: username,
@@ -62,23 +72,23 @@ class MainApi {
       })
     });
     return this._getResponseData(res);
-  }
+  };
 
-  async getMovies() {
-    const res = await fetch(`${this._url}/movies`, {
+  async dataOfMovies(token) {
+    const res = await fetch(`${this._baseUrl}/movies`, {
       headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Authorization": `Bearer ${token}`
       }
     });
     return this._getResponseData(res);
-  }
+  };
 
-  async setNewMovie(data) {
-    const res = await fetch(`${this._url}/movies`, {
+  async setNewMovie(data, token) {
+    const res = await fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
         country: data.country,
@@ -95,21 +105,21 @@ class MainApi {
       })
     });
     return this._getResponseData(res);
-  }
+  };
 
-  async deleteMyMovie(cardId) {
-    const res = await fetch(`${this._url}/movies/${cardId}`, {
+  async deleteMovie(cardId, token) {
+    const res = await fetch(`${this._baseUrl}/movies/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Authorization": `Bearer ${token}`
       }
     });
     return this._getResponseData(res);
-  }
-}
+  };
+};
 
-const mainApi = new MainApi({
-  baseUrl: 'https://kmv-movies-diplom.nomoredomainsicu.ru',
+const mainApi = new ApiMain({
+  baseUrl: BACKEND_URL,
 });
 
-export default mainApi
+export default mainApi;

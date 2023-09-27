@@ -1,6 +1,7 @@
+import { PLACEHOLDER_EMAIL_TEXT, PLACEHOLDER_PASS_TEXT } from "../../utils/PlaceholderConstants";
 import Input from "../Input/Input";
 import SectionLogin from "../SectionLogin/SectionLogin";
-import useFormValidation from '../../hooks/useFormValidation'
+import useFormValidation from '../../hooks/useFormValidation';
 
 export default function Login({
   name,
@@ -14,18 +15,19 @@ export default function Login({
     isInputValid,
     isValid,
     handleChange
-  } = useFormValidation()
+  } = useFormValidation();
 
   function onSubmit(evt) {
-    evt.preventDefault()
-    onLogin(values.email, values.password)
-  }
+    evt.preventDefault();
+    onLogin(values.email, values.password);
+  };
 
   return (
     <SectionLogin
       name={name}
       isValid={isValid}
       onSubmit={onSubmit}
+      setIsError={setIsError}
     >
       <Input
         name='email'
@@ -33,12 +35,12 @@ export default function Login({
         title='E-mail'
         value={values.email}
         isInputValid={isInputValid.email}
+        placeholder={PLACEHOLDER_EMAIL_TEXT}
         error={errors.email}
         onChange={(evt) => {
-          handleChange(evt)
-          setIsError(false)
+          handleChange(evt);
+          setIsError(false);
         }}
-        placeholder='Введите вашу электронную почту'
       />
       <Input
         name='password'
@@ -47,13 +49,13 @@ export default function Login({
         minLength = '3'
         value={values.password}
         isInputValid={isInputValid.password}
+        placeholder={PLACEHOLDER_PASS_TEXT}
         error={errors.password}
         onChange={(evt) => {
-          handleChange(evt)
-          setIsError(false)
+          handleChange(evt);
+          setIsError(false);
         }}
-        placeholder='Введите ваш пароль'
       />
     </SectionLogin>
-  )
-}
+  );
+};

@@ -3,136 +3,144 @@ import {
   useState,
   useEffect
 } from "react";
+import {
+  DURATION_TIME,
+  MOVIE_ITEM,
+  ALL_MOVIE_ITEM,
+  SHORT_MOVIE_ITEM
+} from "../../utils/MovieConstants";
+import { SEARCH_MOVIE_ERROR } from "../../utils/ErrorTexts";
 import moviesApi from '../../utils/MoviesApi';
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 export default function Movies({
     setIsError,
-    addMovie,
+    setNewMovie,
     savedMovies
   })
   {
-  const [allMovies, setAllMovies] = useState([])
-  const [filteredMovies, setFilteredMovies] = useState([])
-  const [searchedMouvie, setSearchedMovie] = useState('')
-  const [isCheck, setIsCheck] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [serverError, setServerError] = useState(false)
-  const [firstEntrance, setFirstEntrance] = useState(true)
+  const [allMovies, setAllMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [searchedMovie, setSearchedMovie] = useState('');
+  const [isCheck, setIsCheck] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState(false);
+  const [firstLog, setFirstLog] = useState(true);
 
   const filter = useCallback((
       search,
       isCheck,
       movies
     ) => {
-      setSearchedMovie(search)
-      localStorage.setItem('movie', JSON.stringify(search))
-      localStorage.setItem('shorts', JSON.stringify(isCheck))
-      localStorage.setItem('allmovies', JSON.stringify(movies))
+      setSearchedMovie(search);
+      localStorage.setItem(MOVIE_ITEM, JSON.stringify(search));
+      localStorage.setItem(SHORT_MOVIE_ITEM, JSON.stringify(isCheck));
+      localStorage.setItem(ALL_MOVIE_ITEM, JSON.stringify(movies));
       setFilteredMovies(movies.filter((movie) => {
         const searchName = movie
           .nameRU
           .toLowerCase()
           .includes(search.toLowerCase())
         return isCheck
-          ? (searchName && movie.duration <= 40)
+          ? (searchName
+              && movie.duration
+              <= DURATION_TIME
+            )
           : searchName
-      }))
-  }, [])
+      }));
+  }, []);
 
   function searchMovies(search) {
     if (allMovies.length === 0) {
-      setIsLoading(true)
+      setIsLoading(true);
       moviesApi.takeMovies()
         .then((res) => {
-          setAllMovies(res)
-          setIsCheck(false)
-          setServerError(false)
-          setFirstEntrance(false)
+          setAllMovies(res);
+          setIsCheck(false);
+          setServerError(false);
+          setFirstLog(false);
           filter(
             search,
             isCheck,
             res
-          )
+          );
         })
         .catch(err => {
-          setServerError(true)
-          console.error(`Ошибкак при поске фильмов ${err}`)
+          setServerError(true);
+          console.error(`${SEARCH_MOVIE_ERROR} ${err}`);
         })
-        .finally(() => setIsLoading(false))
+        .finally(() => setIsLoading(false));
     } else {
       filter(
         search,
         isCheck,
         allMovies
-      )
-    }
-  }
+      );
+    };
+  };
 
   useEffect(() => {
-    if (localStorage.allmovies
-        && localStorage.shorts
+    if (
+        localStorage.allmovies
+        && localStorage.shortMovies
         && localStorage.movie
         )
       {
-        const movies = JSON
-          .parse(localStorage.allmovies)
-        const search = JSON
-          .parse(localStorage.movie)
-        const isCheck = JSON
-          .parse(localStorage.shorts)
-        setServerError(false)
-        setFirstEntrance(false)
-        setSearchedMovie(search)
-        setIsCheck(isCheck)
-        setAllMovies(movies)
+        const movies = JSON.parse(localStorage.allmovies);
+        const search = JSON.parse(localStorage.movie);
+        const isCheck = JSON.parse(localStorage.shortMovies);
+        setServerError(false);
+        setFirstLog(false);
+        setSearchedMovie(search);
+        setIsCheck(isCheck);
+        setAllMovies(movies);
         filter(
           search,
           isCheck,
           movies
-        )
+        );
       }
-  }, [filter])
+  }, [filter]);
 
-  function changeShort() {
+  function changeCLick() {
     if (isCheck) {
-      setIsCheck(false)
+      setIsCheck(false);
       filter(
-        searchedMouvie,
+        searchedMovie,
         false,
         allMovies
-      )
-      localStorage.setItem('shorts', JSON.stringify(false))
+      );
+      localStorage.setItem(SHORT_MOVIE_ITEM, JSON.stringify(false));
     } else {
-      setIsCheck(true)
+      setIsCheck(true);
       filter(
-        searchedMouvie,
+        searchedMovie,
         true,
         allMovies
-      )
-      localStorage.setItem('shorts', JSON.stringify(true))
+      );
+      localStorage.setItem(SHORT_MOVIE_ITEM, JSON.stringify(true));
     }
-  }
+  };
 
   return (
     <>
       <SearchForm
         isCheck={isCheck}
         searchMovies={searchMovies}
-        searchedMovie={searchedMouvie}
-        changeShort={changeShort}
+        searchedMovie={searchedMovie}
+        changeFilter={changeCLick}
         setIsError={setIsError}
-        firstEntrance={firstEntrance}
+        firstEntrance={firstLog}
       />
       <MoviesCardList
         movies={filteredMovies}
-        addMovie={addMovie}
+        setNewMovie={setNewMovie}
         savedMovies={savedMovies}
         isLoading={isLoading}
         serverError={serverError}
-        firstEntrance={firstEntrance}
+        firstEntrance={firstLog}
       />
     </>
-  )
-}
+  );
+};

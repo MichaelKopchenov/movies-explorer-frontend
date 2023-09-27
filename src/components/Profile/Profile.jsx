@@ -1,21 +1,22 @@
-import { Link } from 'react-router-dom'
-import { useEffect, useContext } from 'react'
-import CurrentUserContext from '../../contexts/CurrentUserContext'
-import { EmailRegex } from '../../utils/constants'
-import Form from '../Form/Form'
-import Input from '../Input/Input'
-import useFormValidation from '../../hooks/useFormValidation'
-import './Profile.css'
+import { Link } from 'react-router-dom';
+import { useEffect, useContext } from 'react';
+import { EMAIL_REG } from '../../utils/AuthorConstants';
+import { HOME_ROUTE } from '../../utils/RouteConstants';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
+import Form from '../Form/Form';
+import Input from '../Input/Input';
+import useFormValidation from '../../hooks/useFormValidation';
+import './Profile.css';
 
 export default function Profile({
   name,
   logOut,
-  editUserData,
+  onUpdateUser,
   setIsError,
-  isSuccess,
-  setSuccess,
-  setIsEdit,
-  isEdit
+  isOk,
+  setOk,
+  setIsTransform,
+  isTransform
 })
 {
   const {
@@ -25,22 +26,22 @@ export default function Profile({
     isValid,
     handleChange,
     resetForm
-  } = useFormValidation()
+  } = useFormValidation();
 
-  const currentUser = useContext(CurrentUserContext)
+  const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
-    resetForm({username: currentUser.name, email: currentUser.email})
+    resetForm({username: currentUser.name, email: currentUser.email});
   }, [
       resetForm,
-      isEdit,
+      isTransform,
       currentUser
-     ])
+     ]);
 
-  function onSubmit(evt) {
-    evt.preventDefault()
-    editUserData(values.username, values.email)
-  }
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onUpdateUser(values.username, values.email);
+  };
 
   return (
     <section className="profile__main">
@@ -50,13 +51,13 @@ export default function Profile({
       <Form
         name={name}
         isValid={isValid}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
         setIsError={setIsError}
         values={values}
-        isSuccess={isSuccess}
-        setSuccess={setSuccess}
-        setIsEdit={setIsEdit}
-        isEdit={isEdit}
+        isOk={isOk}
+        setOk={setOk}
+        setIsTransform={setIsTransform}
+        isTransform={isTransform}
       >
         <Input
           selectname={name}
@@ -68,7 +69,7 @@ export default function Profile({
           isInputValid={isInputValid.username}
           error={errors.username}
           onChange={handleChange}
-          isEdit={isEdit}
+          isTransform={isTransform}
         />
         <Input
           selectname={name}
@@ -79,17 +80,17 @@ export default function Profile({
           isInputValid={isInputValid.email}
           error={errors.email}
           onChange={handleChange}
-          pattern={EmailRegex}
-          isEdit={isEdit}
+          pattern={EMAIL_REG}
+          isTransform={isTransform}
         />
       </Form>
       <Link
-        to={'/'}
+        to={HOME_ROUTE}
         onClick={logOut}
         className='profile__exit'
       >
         Выйти из аккаунта
       </Link>
     </section>
-  )
-}
+  );
+};

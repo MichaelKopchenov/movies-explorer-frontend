@@ -1,5 +1,5 @@
-import Container from '../Container/Container'
-import './Techs.css'
+import Container from '../Container/Container';
+import './Techs.css';
 
 export default function Techs() {
   return (
@@ -39,5 +39,5 @@ export default function Techs() {
         </ul>
       </Container>
     </section>
-  )
-}
+  );
+};

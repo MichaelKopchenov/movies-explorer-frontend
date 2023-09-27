@@ -1,23 +1,23 @@
-.gallery__card {
+.movies__card {
   background-color: #222222;
   width: 100%;
 }
 
-.gallery__card-group {
+.movies__card-ul {
   padding: 0 12px 0 14px;
   min-height: 68px;
   display: flex;
   justify-content: space-between;
 }
 
-.gallery__text-group {
+.movies__text-ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
   max-width: 300px;
 }
 
-.gallery__subtitle {
+.movies__subtitle {
   margin: 0 0 9px;
   max-width: 206px;
   overflow: hidden;
@@ -29,14 +29,14 @@
   color: var(--main-font-color);
 }
 
-.gallery__duration {
+.movies__duration {
   font-size: 11px;
   font-weight: 400;
   line-height: normal;
   color: var(--secondary-font-color);
 }
 
-.gallery__save {
+.movies__save {
   align-self: flex-start;
   padding: 0;
   margin-top: 14px;
@@ -51,11 +51,11 @@
   transition: opacity .3s linear;
 }
 
-.gallery__save_active {
+.movies__save_active {
   background-image: url(../../images/checkin.svg);
 }
 
-.gallery__picture {
+.movies__album {
   object-fit: cover;
   display: block;
   width: 100%;
@@ -63,7 +63,7 @@
   cursor: pointer;
 }
 
-.gallery__save_type_delete {
+.movies__save_type_delete {
   background-position: center;
   background-image: url(../../images/delete.svg);
 }
@@ -71,31 +71,31 @@
 /* Адаптив под экраны */
 
 @media screen and (max-width: 1023px) {
-  .gallery__text-group {
+  .movies__text-group {
     max-width: 275px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .gallery__text-group {
+  .movies__text-group {
     max-width: 235px;
   }
 }
 
 @media screen and (max-width: 1023px) {
-  .gallery__picture {
+  .movies__picture {
     height: 190px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .gallery__picture {
+  .movies__picture {
     height: 168px;
   }
 }
 
 @media (hover: hover) {
-  .gallery__save:hover {
+  .movies__save:hover {
     opacity: .7;
   }
 }

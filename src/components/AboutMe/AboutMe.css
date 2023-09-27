@@ -102,6 +102,7 @@
     row-gap: 38px;
   }
 }
+
 @media screen and (max-width: 1023px) {
   .aboutme__name {
     margin-bottom: 16px;
