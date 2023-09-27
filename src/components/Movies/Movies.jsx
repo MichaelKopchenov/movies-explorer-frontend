@@ -8,7 +8,7 @@ import {
   MOVIE_ITEM,
   ALL_MOVIE_ITEM,
   SHORT_MOVIE_ITEM
-} from "../../utils/constants";
+} from "../../utils/MovieConstants";
 import { SEARCH_MOVIE_ERROR } from "../../utils/ErrorTexts";
 import moviesApi from '../../utils/MoviesApi';
 import SearchForm from "../SearchForm/SearchForm";
