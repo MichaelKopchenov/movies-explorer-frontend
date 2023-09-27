@@ -1,4 +1,4 @@
-import { BACKEND_URL } from './MovieConstants';
+import { BACKEND_URL } from './UrlConstants';
 
 class ApiMain {
   constructor(options) {

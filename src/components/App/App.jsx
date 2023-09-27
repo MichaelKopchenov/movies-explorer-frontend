@@ -72,8 +72,7 @@ function App() {
       setIsTokenCheck(false);
       localStorage.clear();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedIn]);
+  }, [loggedIn, token]);
 
   const setOk = useCallback(() => {
     setIsOk(false);

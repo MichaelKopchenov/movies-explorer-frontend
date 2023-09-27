@@ -37,7 +37,7 @@ export default function SearchForm({
     } else {
       resetForm({ search: searchedMovie });
     }
-    setIsError(false)
+    setIsError(false);
   }, [
       searchedMovie,
       resetForm,
@@ -118,5 +118,5 @@ export default function SearchForm({
         />
       </div>
     </section>
-  )
-}
+  );
+};
