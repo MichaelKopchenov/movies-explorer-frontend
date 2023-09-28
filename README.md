@@ -1,4 +1,4 @@
-# Дипломный проект Movies Collection (FrontEnd)
+# Дипломный проект Explorer (FrontEnd)
 
 ## Описание
 
@@ -20,12 +20,12 @@
 
 Ниже указана ссылка на репозиторий GitHub и название макета
 
-* [Макет диплома. Вариант "dark-5"](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=891-3857&mode=design&t=2o1n0jVrlmCiWxAF-0)
+* [Макет диплома. Вариант "dark-5".](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=891-3857&mode=design&t=2o1n0jVrlmCiWxAF-0)
 * [Movies Collection ©2023. Копченов Михаил Викторович](https://github.com/MichaelKopchenov/movies-explorer-frontend/tree/level-3)
 
 Некоторые решения были взяты из сети Интернет.
 
-Ниже указана ссылка ев сервер
+Ниже указаны ссылки на проект и сервер
 
 * [Frontend](http://fr-kmv-movies-diplom.nomoredomainsicu.ru)
 * [Backend](http://kmv-movies-diplom.nomoredomainsicu.ru)
