@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { MOVIES_ROUTE } from '../../utils/RouteConstants';
+import { ALBUM_PICTURE_URL } from '../../utils/UrlConstants';
 import './MoviesCard.css';
 
 export default function MoviesCard({
@@ -57,7 +58,7 @@ export default function MoviesCard({
             className='movies__album'
             src={pathname
               === '/movies'
-              ? `https://api.nomoreparties.co${data.image.url}`
+              ? `${ALBUM_PICTURE_URL}${data.image.url}`
               : data.image
             }
           />
@@ -72,7 +73,7 @@ export default function MoviesCard({
             </span>
           </div>
           {pathname
-            === '/movies'
+            === MOVIES_ROUTE
             ? <button
                 type='button'
                 onClick={onClick}

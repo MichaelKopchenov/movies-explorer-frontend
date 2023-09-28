@@ -113,7 +113,7 @@ export default function MoviesCardList({
               «Ничего не найдено»
             </span>
           : pathname
-            === '/movies'
+            === MOVIES_ROUTE
           ? <span className='movies__error'>
               «Чтобы увидеть список фильмоа выполните поиск»
             </span>

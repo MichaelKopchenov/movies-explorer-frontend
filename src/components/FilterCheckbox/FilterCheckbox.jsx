@@ -10,7 +10,7 @@ export default function FilterCheckbox({ isCheck, changeFilter }) {
         ? checkBox
         : uncheckBox
       }
-      alt="checkbox" />
+      alt='Фильтр короткометражек' />
       <span className='search__check-text'>
         Короткометражки
       </span>

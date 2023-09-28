@@ -146,13 +146,13 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .about__time-learn {
+  .about__learn {
     grid-template-columns: calc(140/668*100%) 1fr;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .about__time-learn {
+  .about__learn {
     grid-template-columns: calc(100/284*100%) 1fr;
     row-gap: 10px;
   }

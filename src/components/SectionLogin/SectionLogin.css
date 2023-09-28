@@ -30,6 +30,7 @@
 }
 
 .login__navigation {
+  margin-left: 7px;
   text-decoration: none;
   color: #4285F4;
   transition: opacity .3s linear;
@@ -67,6 +68,12 @@
 @media screen and (max-width: 525px) {
   .login__text {
     font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .login__navigation-home {
+    margin: 0 auto;
   }
 }
 

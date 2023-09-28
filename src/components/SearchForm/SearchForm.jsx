@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useContext } from 'react';
 import { FAVORITE_MOVIES_ROUTE } from '../../utils/RouteConstants';
 import { INPUT_MOVIE_TEXT_ERROR } from '../../utils/ErrorTexts';
+import { PLACEHOLDER_SEARCH_TEXT } from '../../utils/PlaceholderConstants';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import ErrorContext from '../../contexts/ErrorContext';
 import useFormValidation from '../../hooks/useFormValidation';
@@ -79,7 +80,7 @@ export default function SearchForm({
             required
             type="text"
             name='search'
-            placeholder='Фильм'
+            placeholder={PLACEHOLDER_SEARCH_TEXT}
             className='search__input'
             value={values.search || ''}
             onChange={(evt) => {

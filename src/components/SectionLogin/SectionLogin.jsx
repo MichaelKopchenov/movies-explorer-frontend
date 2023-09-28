@@ -42,9 +42,9 @@ export default function SectionLogin({
         : name === 'signup'
         ? <p className='login__text'>
             Уже зарегистрированы?
-            <Link to={LOGIN_ROUTE} className='login__navigation'>
+             <Link to={LOGIN_ROUTE} className='login__navigation'>
               Войти
-            </Link>
+             </Link>
           </p>
         : <Link to={HOME_ROUTE}>
             Выйти из аккаунта

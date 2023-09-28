@@ -9,7 +9,7 @@ export default function Footer() {
       </p>
       <div className="footer__container">
         <p className="footer__subtitle">
-          &copy;{new Date().getFullYear()}
+          &copy; {new Date().getFullYear()}
         </p>
         <nav className="footer__navigation">
           <a
