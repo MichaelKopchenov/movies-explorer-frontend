@@ -1,4 +1,4 @@
-const MOVIE_ITEM = 'movies';
+const MOVIE_ITEM = 'movie';
 const ALL_MOVIE_ITEM = 'allmovies';
 const SHORT_MOVIE_ITEM = 'shortMovies';
 

@@ -26,6 +26,7 @@ export default function Form({
   onSubmit,
   setIsError,
   values,
+  isOk,
   setOk,
   setIsTransform,
   isTransform
@@ -115,12 +116,12 @@ export default function Form({
         ? <>
             <span className={`profile__error-auth ${isError
               ? 'profile__error-auth_type_err'
-              : ''}`
+              : isOk && 'profile__error-auth_type_ok'}`
               }
             >
               {isError
                 ? TEXT_UPDATE_USER_INFO_ERROR
-                : ''
+                : 'Данные обновлены'
               }
             </span>
             <button
@@ -137,12 +138,12 @@ export default function Form({
         : <>
             <span className={`profile__error-auth ${isError
               ? 'profile__error-auth_type_err'
-              : ''}`
+              : isOk && 'profile__error-auth_type_ok'}`
               }
             >
               {isError
                 ? TEXT_UPDATE_USER_INFO_ERROR
-                : ''
+                : 'Данные обновлены'
               }
             </span>
             <button

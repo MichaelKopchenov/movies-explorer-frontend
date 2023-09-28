@@ -34,9 +34,9 @@ export default function Movies({
       movies
     ) => {
       setSearchedMovie(search);
-      localStorage.setItem(MOVIE_ITEM, JSON.stringify(search));
-      localStorage.setItem(SHORT_MOVIE_ITEM, JSON.stringify(isCheck));
-      localStorage.setItem(ALL_MOVIE_ITEM, JSON.stringify(movies));
+      localStorage.setItem(MOVIE_ITEM, JSON.stringify(search))
+    localStorage.setItem(SHORT_MOVIE_ITEM, JSON.stringify(isCheck))
+    localStorage.setItem(ALL_MOVIE_ITEM, JSON.stringify(movies))
       setFilteredMovies(movies.filter((movie) => {
         const searchName = movie
           .nameRU
@@ -131,7 +131,7 @@ export default function Movies({
         searchedMovie={searchedMovie}
         changeFilter={changeCLick}
         setIsError={setIsError}
-        firstEntrance={firstLog}
+        firstLog={firstLog}
       />
       <MoviesCardList
         movies={filteredMovies}
@@ -139,7 +139,7 @@ export default function Movies({
         savedMovies={savedMovies}
         isLoading={isLoading}
         serverError={serverError}
-        firstEntrance={firstLog}
+        firstLog={firstLog}
       />
     </>
   );
