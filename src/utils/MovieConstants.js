@@ -1,0 +1,34 @@
+const MOVIE_ITEM = 'movie';
+const ALL_MOVIE_ITEM = 'allmovies';
+const SHORT_MOVIE_ITEM = 'shortMovies';
+
+const DURATION_TIME = 40;
+const MAX_SCREEN = 1280;
+const STANDART_SCREEN = 1024;
+const MEDIUM_SCREEN = 767;
+const SML_SCREEN = 650;
+const SIXTEEN_CARDS = 16;
+const TWELVE_CARDS = 12;
+const EIGHT_CARDS = 8;
+const FIVE_CARDS = 5;
+const FOUR_CARDS = 4;
+const THREE_CARDS = 3;
+const TWO_CARDS = 2;
+
+module.exports = {
+  MOVIE_ITEM,
+  ALL_MOVIE_ITEM,
+  SHORT_MOVIE_ITEM,
+  DURATION_TIME,
+  MAX_SCREEN,
+  STANDART_SCREEN,
+  MEDIUM_SCREEN,
+  SML_SCREEN,
+  SIXTEEN_CARDS,
+  TWELVE_CARDS,
+  EIGHT_CARDS,
+  FIVE_CARDS,
+  FOUR_CARDS,
+  THREE_CARDS,
+  TWO_CARDS
+};

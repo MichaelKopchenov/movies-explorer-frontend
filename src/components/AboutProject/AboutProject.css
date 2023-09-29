@@ -62,7 +62,7 @@
   color: var(--main-font-color);
 }
 
-.about__progress_type_backend {
+.about__progress_type_stepone {
   background-color: #3DDC84;
   color: #000000;
 }
@@ -146,13 +146,13 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .about__time-learn {
+  .about__learn {
     grid-template-columns: calc(140/668*100%) 1fr;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .about__time-learn {
+  .about__learn {
     grid-template-columns: calc(100/284*100%) 1fr;
     row-gap: 10px;
   }

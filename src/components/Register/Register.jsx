@@ -1,30 +1,42 @@
+import {
+  PLACEHOLDER_NAME_TEXT,
+  PLACEHOLDER_EMAIL_TEXT,
+  PLACEHOLDER_PASS_TEXT
+} from "../../utils/PlaceholderConstants";
+import { EMAIL_REG } from "../../utils/AuthorConstants";
 import SectionLogin from "../SectionLogin/SectionLogin";
-import useFormValidation from '../../hooks/useFormValidation'
-import { useNavigate } from "react-router-dom";
+import useFormValidation from '../../hooks/useFormValidation';
 import Input from "../Input/Input";
 
-
-export default function Login({ name, setLoggedIn }) {
-  const navigate = useNavigate()
+export default function Login({
+  name,
+  onRegister,
+  setIsError
+})
+{
   const {
     values,
     errors,
     isInputValid,
     isValid,
     handleChange
-  } = useFormValidation()
+  } = useFormValidation();
 
-  function onLogin(evt) {
-    evt.preventDefault()
-    navigate('/signin')
-    setLoggedIn(true)
-  }
+  function onSubmit(evt) {
+    evt.preventDefault();
+    onRegister(
+      values.username,
+      values.email,
+      values.password
+    );
+  };
 
   return (
     <SectionLogin
       name={name}
       isValid={isValid}
-      onSubmit={onLogin}
+      onSubmit={onSubmit}
+      setIsError={setIsError}
     >
       <Input
         name='username'
@@ -33,8 +45,13 @@ export default function Login({ name, setLoggedIn }) {
         minLength = '2'
         value={values.username}
         isInputValid={isInputValid.username}
+        placeholder={PLACEHOLDER_NAME_TEXT}
         error={errors.username}
-        onChange={handleChange}
+        onChange={(evt) => {
+          handleChange(evt);
+          setIsError(false);
+        }
+        }
       />
       <Input
         name='email'
@@ -42,8 +59,14 @@ export default function Login({ name, setLoggedIn }) {
         title='E-mail'
         value={values.email}
         isInputValid={isInputValid.email}
+        placeholder={PLACEHOLDER_EMAIL_TEXT}
         error={errors.email}
-        onChange={handleChange}
+        pattern={EMAIL_REG}
+        onChange={(evt) => {
+          handleChange(evt);
+          setIsError(false);
+        }
+        }
       />
       <Input
         name='password'
@@ -52,9 +75,14 @@ export default function Login({ name, setLoggedIn }) {
         minLength = '3'
         value={values.password}
         isInputValid={isInputValid.password}
+        placeholder={PLACEHOLDER_PASS_TEXT}
         error={errors.password}
-        onChange={handleChange}
+        onChange={(evt) => {
+          handleChange(evt);
+          setIsError(false);
+        }
+        }
       />
     </SectionLogin>
-  )
-}
+  );
+};

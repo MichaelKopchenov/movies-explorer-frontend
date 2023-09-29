@@ -1,24 +1,33 @@
-import photo from '../../images/photo.png'
-import Container from "../Container/Container"
-import './AboutMe.css'
+import { GITHUB_URL } from '../../utils/UrlConstants';
+import avatar from '../../images/Avatar.jpeg';
+import Container from "../Container/Container";
+import './AboutMe.css';
 
 export default function AboutMe() {
   return (
     <section className="aboutme">
       <Container>
-        <h2 className="aboutme__title">Студент</h2>
+        <h2 className="aboutme__title">
+          Студент
+        </h2>
         <div className="aboutme__container">
           <div className="aboutme__text-container">
-            <h3 className="aboutme__name">Виталий</h3>
-            <p className="aboutme__job">Фронтенд-разработчик, 30 лет</p>
-            <p className="aboutme__description">Я&nbsp;родился и&nbsp;живу в&nbsp;Саратове,
-              закончил факультет экономики СГУ. У&nbsp;меня есть жена
-              и&nbsp;дочь. Я&nbsp;люблю слушать музыку, а&nbsp;ещё увлекаюсь бегом.
-              Недавно начал кодить. С&nbsp;2015 года работал в&nbsp;компании &laquo;СКБ Контур&raquo;.
-              После того, как прошёл курс по&nbsp;веб-разработке,
-              начал заниматься фриланс-заказами и&nbsp;ушёл с&nbsp;постоянной работы.</p>
+            <h3 className="aboutme__name">
+              Михаил
+            </h3>
+            <p className="aboutme__job">
+              Фронтенд-разработчик, 29 лет
+            </p>
+            <p className="aboutme__description">
+              Я родился и живу в Москве,
+              закончил Московский Политех. У меня есть жена
+              и сын. Я люблю слушать музыку, а ещё увлекаюсь культуризмом.
+              Недавно начал кодить. С 2017 года работаю в РАНХиГС ИБДА.
+              После того, как прошёл курс  по веб-разработке,
+              начал заниматься фриланс-заказами, но не ушёл с постоянной работы.
+              </p>
             <a
-              href='https://github.com/MichaelKopchenov'
+              href={GITHUB_URL}
               target='_blank'
               className="aboutme__link"
               rel="noreferrer">
@@ -26,12 +35,12 @@ export default function AboutMe() {
             </a>
           </div>
           <img
-            src={photo}
+            src={avatar}
             alt="Аватар"
             className="aboutme__avatar"
           />
         </div>
       </Container>
     </section>
-  )
-}
+  );
+};

@@ -1,30 +1,33 @@
+import { PLACEHOLDER_EMAIL_TEXT, PLACEHOLDER_PASS_TEXT } from "../../utils/PlaceholderConstants";
 import Input from "../Input/Input";
 import SectionLogin from "../SectionLogin/SectionLogin";
-import useFormValidation from '../../hooks/useFormValidation'
-import { useNavigate } from "react-router-dom";
+import useFormValidation from '../../hooks/useFormValidation';
 
-
-export default function Login({ name, setLoggedIn }) {
-  const navigate = useNavigate()
+export default function Login({
+  name,
+  setIsError,
+  onLogin
+})
+{
   const {
     values,
     errors,
     isInputValid,
     isValid,
     handleChange
-  } = useFormValidation()
+  } = useFormValidation();
 
-  function onLogin(evt) {
-    evt.preventDefault()
-    navigate('/movies')
-    setLoggedIn(true)
-  }
+  function onSubmit(evt) {
+    evt.preventDefault();
+    onLogin(values.email, values.password);
+  };
 
   return (
     <SectionLogin
       name={name}
       isValid={isValid}
-      onSubmit={onLogin}
+      onSubmit={onSubmit}
+      setIsError={setIsError}
     >
       <Input
         name='email'
@@ -32,8 +35,12 @@ export default function Login({ name, setLoggedIn }) {
         title='E-mail'
         value={values.email}
         isInputValid={isInputValid.email}
+        placeholder={PLACEHOLDER_EMAIL_TEXT}
         error={errors.email}
-        onChange={handleChange}
+        onChange={(evt) => {
+          handleChange(evt);
+          setIsError(false);
+        }}
       />
       <Input
         name='password'
@@ -42,9 +49,13 @@ export default function Login({ name, setLoggedIn }) {
         minLength = '3'
         value={values.password}
         isInputValid={isInputValid.password}
+        placeholder={PLACEHOLDER_PASS_TEXT}
         error={errors.password}
-        onChange={handleChange}
+        onChange={(evt) => {
+          handleChange(evt);
+          setIsError(false);
+        }}
       />
     </SectionLogin>
-  )
-}
+  );
+};

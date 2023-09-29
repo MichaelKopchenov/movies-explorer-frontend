@@ -1,4 +1,4 @@
-# Дипломный проект Movies Collection (FrontEnd)
+# Дипломный проект Explorer (FrontEnd)
 
 ## Описание
 
@@ -20,12 +20,12 @@
 
 Ниже указана ссылка на репозиторий GitHub и название макета
 
-* [Макет диплома. Вариант "dark-5"](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=891-3857&mode=design&t=2o1n0jVrlmCiWxAF-0)
-* [Movies Collection ©2023. Копченов Михаил Викторович](https://github.com/MichaelKopchenov/movies-explorer-frontend/tree/level-2)
+* [Макет диплома. Вариант "dark-5".](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=891-3857&mode=design&t=2o1n0jVrlmCiWxAF-0)
+* [Movies Collection ©2023. Копченов Михаил Викторович](https://github.com/MichaelKopchenov/movies-explorer-frontend/pull/2)
 
-P.S. Названия фильмов и их продолжительность взял из другого макета. Ссылки на трейлеры к фильмам нашел сам. Некоторые решения были взяты из сети Интернет.
+Некоторые решения были взяты из сети Интернет.
 
-Ниже указана ссылка ев сервер
+Ниже указаны ссылки на проект и сервер
 
 * [Frontend](http://fr-kmv-movies-diplom.nomoredomainsicu.ru)
 * [Backend](http://kmv-movies-diplom.nomoredomainsicu.ru)
@@ -33,14 +33,14 @@ P.S. Названия фильмов и их продолжительность 
 
 ## Директории
 
-`/components` — папка с основными компонентами
-`/hooks` — папка с файлами валидации
-`/images` — папка с изображениями
-`/styles` — папка с общими стилями для всего проекта
-`/utils` — папка с фильмами
-`/vendor` — папка с файлами сторонних разработчиков
+* `/components` — папка с основными компонентами
+* `/contexts` — папка контекста
+* `/hooks` — папка с файлами валидации
+* `/images` — папка с изображениями
+* `/styles` — папка с общими стилями для всего проекта
+* `/utils` — папка с константами и Api
+* `/vendor` — папка с файлами сторонних разработчиков
 
 ## Запуск проекта
 
-`npm run start` — запускает сервер
-`npm run dev` — запускает сервер с hot-reload
+* `npm run start` — запускает сервер
